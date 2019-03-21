@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#FERRAMENTAS
+
+clear
+echo "1 - ATRIBUIR IP"
+echo "2 - NETSTAT"
+echo "3 - SSH-CHAT"
+echo "4 - SSHPASS"
+echo -n "OPÇÃO: "
+read CHOOSE
+
+#IP 
+if [[ $CHOOSE = 1 ]]; then
+	clear
+	echo "ENDEREÇO: "
+	read IP
+	echo "DEV: "
+	read DEV
+	ip l s down dev $DEV
+	ip a f dev $DEV
+	ip a a $IP dev $DEV
+	ip l s up dev $DEV
+	clear
+	echo "IP: $IP E $DEV ATRIBUIDOS"
+fi
+
+#NET
+if [[ $CHOOSE = 2 ]]; then
+	clear
+	echo "###### VERIFICANDO REDE ######"
+	sleep 1
+	clear
+	netstat -tnpa
+fi
+
+#SSH-CHAT
+if [[ $CHOOSE = 3 ]]; then
+	clear
+	echo "###### INICIALIZANDO SERVICO ######"
+	sleep 1
+	~/safado/ssh-chat/ssh-chat
+fi
+
+if [[ $CHOOSE = 4 ]]; then
+	clear
+	bash ~/safado/dickattack/tentaralho.sh
+fi
